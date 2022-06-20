@@ -4,10 +4,7 @@ import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Address
-import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -20,21 +17,19 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.example.mapstest.databinding.ActivityMapsBinding
+import com.example.mapstest.databinding.ActivityLiveTrafficBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.io.IOException
 import java.util.*
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
-        const val TAG = "MapsActivityTAG"
-        const val REQUEST_CODE_CHECK_SETTINGS = 111
+        const val TAG = "LiveTrafficActivity"
+        const val REQUEST_CODE_CHECK_SETTINGS = 112
     }
 
-    private lateinit var binding: ActivityMapsBinding
+    private lateinit var binding: ActivityLiveTrafficBinding
     private lateinit var mMap: GoogleMap
     private lateinit var latLng: LatLng
 
@@ -66,7 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMapsBinding.inflate(layoutInflater)
+        binding = ActivityLiveTrafficBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -78,7 +73,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onUpdate(lat: Double, lon: Double) {
                 Log.d(TAG, "onUpdate: lat: $lat ---- lon: $lon")
                 latLng = LatLng(lat, lon)
-                getAddress(latLng)
             }
         })
     }
@@ -126,6 +120,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             anim.start()
             binding.mapTypeFAB.visibility = View.INVISIBLE
 
+        }
+
+        // Set click listener on FAB to enable/disable live traffic
+        binding.liveTrafficFAB.setOnClickListener {
+            if (!Utils.isGPSEnabled(this)) {
+                Utils.enableLocationSettings(this)
+            } else {
+                if (!mMap.isTrafficEnabled) {
+                    binding.liveTrafficFAB.setColorFilter(Color.parseColor("#2196F3"))
+                    mMap.isTrafficEnabled = true
+                } else {
+                    binding.liveTrafficFAB.setColorFilter(Color.parseColor("#5F6060"))
+                    mMap.isTrafficEnabled = false
+                }
+            }
         }
 
         // Set click listener on the map to close the map type selection view
@@ -194,8 +203,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
         }
 
-        if (Utils.hasLocationPermission(this))
+        if (Utils.hasLocationPermission(this)) {
             mMap.isMyLocationEnabled = true
+            binding.liveTrafficFAB.setColorFilter(Color.parseColor("#2196F3"))
+            mMap.isTrafficEnabled = true
+        }
         else {
             locationPermissionRequest.launch(
                 arrayOf(
@@ -230,65 +242,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Utils.enableLocationSettings(this)
         }
     }
-
-    private fun getAddress(latLng: LatLng) {
-        try {
-            val addresses: List<Address>
-            val geocoder = Geocoder(this, Locale.getDefault())
-
-            addresses = geocoder.getFromLocation(
-                latLng.latitude,
-                latLng.longitude,
-                1
-            ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-
-            val address: String =
-                addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            val city: String = addresses[0].locality
-            val state: String = addresses[0].adminArea
-            val country: String = addresses[0].countryName
-            val postalCode: String = addresses[0].postalCode
-            val knownName: String =
-                addresses[0].featureName // Only if available else return NULL
-
-            Log.d(TAG, "getAddress: \n address= $address\n city= $city \n state= $state \ncountry= $country\n postal code= $postalCode\n knownName= $knownName")
-
-        } catch (e: Exception) {
-            Log.d(TAG, "getAddress: ${e.printStackTrace()}")
-        }
-    }
-
-    /*fun onMapSearch(view: View?) {
-        val location = binding.editText.text.toString()
-        var addressList: List<Address>? = null
-        if (location.isNotEmpty()) {
-            val geocoder = Geocoder(this)
-            try {
-                addressList = geocoder.getFromLocationName(location, 1)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            mMap.addMarker(MarkerOptions().position(latLng).title("Marker"))
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        }
-    }
-
-    fun onNormalMap(view: View?) {
-        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-    }
-
-    fun onSatelliteMap(view: View?) {
-        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
-    }
-
-    fun onTerrainMap(view: View?) {
-        mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
-    }
-
-    fun onHybridMap(view: View?) {
-        mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
-    }*/
 }

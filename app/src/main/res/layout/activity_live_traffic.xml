@@ -4,61 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MapsActivity">
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:hint="Search Location" />
-
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:onClick="onMapSearch"
-            android:text="Search" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onNormalMap"
-            android:text="Normal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSatelliteMap"
-            android:text="Satellite" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onTerrainMap"
-            android:text="Terrain" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onHybridMap"
-            android:text="Hybrid" />
-
-    </LinearLayout>-->
+    tools:context=".LiveTrafficActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -81,6 +27,21 @@
         app:rippleColor="#eff5ff"
         app:tint="#5F6060"
         app:srcCompat="@drawable/ic_map_layers" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/live_traffic_FAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFF"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map_type_FAB"
+        app:rippleColor="#eff5ff"
+        app:tint="#5F6060"
+        app:srcCompat="@drawable/ic_traffic" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/map_type_selection"
@@ -214,5 +175,57 @@
             app:layout_constraintTop_toBottomOf="@+id/map_type_terrain" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/map_type_background"
+        android:elevation="6dp"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Slow"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="38dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/traffic_intensity_shape1" />
+
+        <View
+            android:layout_width="38dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/traffic_intensity_shape2" />
+
+        <View
+            android:layout_width="38dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/traffic_intensity_shape3" />
+
+        <View
+            android:layout_width="38dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/traffic_intensity_shape4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Fast"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

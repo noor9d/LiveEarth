@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/ic_map_layers.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/map_type_background.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/rounded_rectangle.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/traffic_intensity_shape1.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/traffic_intensity_shape2.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/traffic_intensity_shape3.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/traffic_intensity_shape4.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_live_traffic.xml" value="0.3359375" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_maps.xml" value="0.296195652173913" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_maps2.xml" value="0.3359375" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_route_finder.xml" value="0.3359375" />
       </map>
     </option>
   </component>
