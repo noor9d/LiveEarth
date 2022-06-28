@@ -9,12 +9,12 @@ import android.util.Log
 
 
 class LocationTracker {
-    var isGPSEnabled = false
-    var isNetworkEnabled = false
-    var canGetLocation = false
-    var mLocation: Location? = null
-    var locationManager: LocationManager? = null
-    var listener: OnLocationUpdateListener? = null
+    private var isGPSEnabled = false
+    private var isNetworkEnabled = false
+    private var canGetLocation = false
+    private var mLocation: Location? = null
+    private var locationManager: LocationManager? = null
+    private var listener: OnLocationUpdateListener? = null
 
     fun connectToLocation(listener: OnLocationUpdateListener?) {
         this.listener = listener

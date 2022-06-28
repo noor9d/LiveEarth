@@ -1,10 +1,7 @@
-package com.example.mapstest
+package com.example.mapstest.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mapstest.LocationTracker.Companion.instance
-import com.example.mapstest.LocationTracker.OnLocationUpdateListener
 import com.example.mapstest.databinding.ActivityRouteFinderBinding
 
 

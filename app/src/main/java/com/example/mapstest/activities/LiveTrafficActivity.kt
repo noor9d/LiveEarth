@@ -1,11 +1,9 @@
-package com.example.mapstest
+package com.example.mapstest.activities
 
 import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.content.Context
 import android.graphics.Color
-import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -17,11 +15,13 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mapstest.LocationTracker
+import com.example.mapstest.R
+import com.example.mapstest.Utils
 import com.example.mapstest.databinding.ActivityLiveTrafficBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.*
 
 class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {

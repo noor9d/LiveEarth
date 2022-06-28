@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -34,6 +34,7 @@
                 android:text="Live Cameras"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_street_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                 android:text="Live Traffic"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_live_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
                 android:text="Live Address"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_route_finder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,6 +65,7 @@
                 android:text="Route Finder"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_compass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,6 +73,7 @@
                 android:text="Compass"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_famous_places"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,6 +81,7 @@
                 android:text="Famous Places"/>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_nearby_places"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

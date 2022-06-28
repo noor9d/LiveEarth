@@ -1,4 +1,4 @@
-package com.example.mapstest
+package com.example.mapstest.activities
 
 import android.Manifest
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.example.mapstest.databinding.ActivityMainBinding
-import com.example.mapstest.databinding.ActivityMapsBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -59,8 +58,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, LiveTrafficActivity::class.java))
         }
 
-        binding.btnRouteFinder.setOnClickListener {
-            startActivity(Intent(this@MainActivity, RouteFinderActivity::class.java))
+        binding.btnLiveCameras.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LiveCamerasActivity::class.java))
         }
     }
 }
