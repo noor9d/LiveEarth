@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mapstest">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -18,12 +18,15 @@
         android:theme="@style/Theme.MapsTest"
         tools:targetApi="31">
         <activity
-            android:name=".activities.LiveCamerasActivity"
+            android:name=".YoutubePlayerActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
-            android:name=".activities.VideoPlayerActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+            android:name=".activities.CompassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LiveCamerasActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.LiveTrafficActivity"
             android:exported="false" />
@@ -49,5 +52,11 @@
             android:exported="true"
             android:label="@string/title_activity_maps" />
     </application>
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 
 </manifest>

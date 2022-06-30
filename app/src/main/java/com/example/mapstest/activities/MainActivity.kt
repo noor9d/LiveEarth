@@ -61,5 +61,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnLiveCameras.setOnClickListener {
             startActivity(Intent(this@MainActivity, LiveCamerasActivity::class.java))
         }
+
+        binding.btnCompass.setOnClickListener {
+            startActivity(Intent(this@MainActivity, CompassActivity::class.java))
+        }
     }
 }

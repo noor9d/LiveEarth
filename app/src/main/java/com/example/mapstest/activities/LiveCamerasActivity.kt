@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.mapstest.YoutubePlayerActivity
 import com.example.mapstest.adapters.LiveCamerasAdapter
 import com.example.mapstest.databinding.ActivityLiveCamerasBinding
 import com.example.mapstest.models.LiveCamera
@@ -98,7 +99,7 @@ class LiveCamerasActivity : AppCompatActivity(), LiveCamerasAdapter.ItemClickLis
 
     override fun onLiveCameraClick(position: Int) {
         Log.d(TAG, "onLiveCameraClick: ${cameraList[position].name}")
-        val intent = Intent(this@LiveCamerasActivity, VideoPlayerActivity::class.java)
+        val intent = Intent(this@LiveCamerasActivity, YoutubePlayerActivity::class.java)
         intent.putExtra("video_id", cameraList[position].cameraId)
         startActivity(intent)
     }

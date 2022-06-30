@@ -16,6 +16,8 @@ import com.google.android.gms.location.LocationSettingsResponse
 
 object Utils {
 
+    const val API_KEY:String = "AIzaSyBrc2JZgUtWdAPIrs-0EM5nY8azr56n2X8"
+
     fun isGPSEnabled(context: Context): Boolean {
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)

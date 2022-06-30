@@ -65,7 +65,7 @@
                 android:text="Route Finder"/>
 
             <Button
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/btn_compass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
