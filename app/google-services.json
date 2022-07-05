@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "874663456009",
+    "firebase_url": "https://mapstest-353310-default-rtdb.firebaseio.com",
+    "project_id": "mapstest-353310",
+    "storage_bucket": "mapstest-353310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874663456009:android:327430d0476332575ff7d8",
+        "android_client_info": {
+          "package_name": "com.example.mapstest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874663456009-aphlkb5s03lrie2vbj0c4377tshskc1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-ymfOX6MCSygtYytJItBb6mhTC3cPl_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874663456009-aphlkb5s03lrie2vbj0c4377tshskc1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -57,15 +57,15 @@
                 android:text="Live Address"/>
 
             <Button
-                android:visibility="gone"
-                android:id="@+id/btn_route_finder"
+                android:visibility="visible"
+                android:id="@+id/btn_location_tracker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Route Finder"/>
+                android:text="Location Tracker"/>
 
             <Button
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/btn_compass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

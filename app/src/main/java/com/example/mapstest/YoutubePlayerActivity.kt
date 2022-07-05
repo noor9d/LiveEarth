@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import com.example.mapstest.databinding.ActivityYoutubePlayerBinding
+import com.example.mapstest.utils.Utils
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer

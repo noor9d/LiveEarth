@@ -1,4 +1,4 @@
-package com.example.mapstest
+package com.example.mapstest.utils
 
 import android.Manifest
 import android.app.Activity

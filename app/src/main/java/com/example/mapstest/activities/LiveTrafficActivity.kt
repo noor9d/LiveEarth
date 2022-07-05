@@ -17,7 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mapstest.LocationTracker
 import com.example.mapstest.R
-import com.example.mapstest.Utils
+import com.example.mapstest.utils.Utils
 import com.example.mapstest.databinding.ActivityLiveTrafficBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng

@@ -1,12 +1,12 @@
 package com.example.mapstest
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
-
 
 class LocationTracker {
     private var isGPSEnabled = false
@@ -33,6 +33,7 @@ class LocationTracker {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun getLocation(): Location? {
         try {
             locationManager = mContext?.getSystemService(Context.LOCATION_SERVICE) as LocationManager

@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/custom_bg_empty.xml" value="0.2335" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/ic_map_layers.xml" value="0.2425" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/ic_marker.xml" value="0.25" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/ic_traffic.xml" value="0.2335" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/map_type_background.xml" value="0.2425" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/drawable/rounded_rectangle.xml" value="0.2425" />
@@ -15,6 +16,8 @@
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_compass.xml" value="0.31567028985507245" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_live_cameras.xml" value="0.3161231884057971" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_live_traffic.xml" value="0.3359375" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_location_tracker.xml" value="0.33" />
+        <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_location_tracker2.xml" value="0.3359375" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_maps.xml" value="0.296195652173913" />
         <entry key="..\:/TestProjects/MapsTest/app/src/main/res/layout/activity_maps2.xml" value="0.3359375" />
