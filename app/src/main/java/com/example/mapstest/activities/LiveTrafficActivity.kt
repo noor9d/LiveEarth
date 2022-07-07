@@ -19,6 +19,7 @@ import com.example.mapstest.LocationTracker
 import com.example.mapstest.R
 import com.example.mapstest.utils.Utils
 import com.example.mapstest.databinding.ActivityLiveTrafficBinding
+import com.example.mapstest.utils.Permissions
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -31,7 +32,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityLiveTrafficBinding
     private lateinit var mMap: GoogleMap
-    private lateinit var latLng: LatLng
+    private var latLng: LatLng = LatLng(0.0,0.0)
 
     @RequiresApi(Build.VERSION_CODES.N)
     val locationPermissionRequest = registerForActivityResult(
@@ -42,14 +43,14 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
                 // Precise location access granted.
                 Log.d(TAG, "Precise location access granted")
                 if (!Utils.isGPSEnabled(this)) {
-                    Utils.enableLocationSettings(this)
+                    Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
                 }
             }
             permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                 // Only approximate location access granted.
                 Log.d(TAG, "Only approximate location access granted!")
                 if (!Utils.isGPSEnabled(this)) {
-                    Utils.enableLocationSettings(this)
+                    Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
                 }
             }
             else -> {
@@ -63,6 +64,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityLiveTrafficBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.d(TAG, "222onCreate: called!")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -71,6 +73,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
         LocationTracker.getInstance(this)!!.connectToLocation(object :
             LocationTracker.OnLocationUpdateListener {
             override fun onUpdate(lat: Double, lon: Double) {
+                Log.d(TAG, "222onUpdate: called!")
                 Log.d(TAG, "onUpdate: lat: $lat ---- lon: $lon")
                 latLng = LatLng(lat, lon)
             }
@@ -79,6 +82,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onMapReady(googleMap: GoogleMap) {
+        Log.d(TAG, "222onMapReady: called!")
         mMap = googleMap
 
         // When map is initially loaded, determine which map type option to 'select'
@@ -125,7 +129,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
         // Set click listener on FAB to enable/disable live traffic
         binding.liveTrafficFAB.setOnClickListener {
             if (!Utils.isGPSEnabled(this)) {
-                Utils.enableLocationSettings(this)
+                Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
             } else {
                 if (!mMap.isTrafficEnabled) {
                     binding.liveTrafficFAB.setColorFilter(Color.parseColor("#2196F3"))
@@ -203,7 +207,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
         }
 
-        if (Utils.hasLocationPermission(this)) {
+        if (Permissions.hasLocationPermission(this)) {
             mMap.isMyLocationEnabled = true
             binding.liveTrafficFAB.setColorFilter(Color.parseColor("#2196F3"))
             mMap.isTrafficEnabled = true
@@ -221,8 +225,10 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         if (!Utils.isGPSEnabled(this)) {
-            Utils.enableLocationSettings(this)
-        } else addMarker()
+            Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
+        } else {
+            addMarker()
+        }
     }
 
     private fun addMarker() {
@@ -239,7 +245,7 @@ class LiveTrafficActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.animateCamera(loc)
         } else {
             Log.d(TAG, "onCreate: gps disabled")
-            Utils.enableLocationSettings(this)
+            Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
         }
     }
 }

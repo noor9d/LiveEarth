@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import com.example.mapstest.BuildConfig.MAPS_API_KEY
 import com.example.mapstest.databinding.ActivityYoutubePlayerBinding
 import com.example.mapstest.utils.Utils
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -60,6 +61,6 @@ class YoutubePlayerActivity : YouTubeBaseActivity() {
 
         })
 
-        youTubePlayerView!!.initialize(Utils.API_KEY, mOnInitializedListener)
+        youTubePlayerView!!.initialize(MAPS_API_KEY, mOnInitializedListener)
     }
 }

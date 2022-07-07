@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <queries>
         <intent>
@@ -24,6 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MapsTest"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.StreetViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StreetViewLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PolyActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.LocationTrackerActivity"
             android:exported="false" />
@@ -58,7 +68,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MapsActivity"
+            android:name=".activities.LiveMapActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" />
 

@@ -20,15 +20,15 @@ class MainActivity : AppCompatActivity() {
         when {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
                 // Precise location access granted.
-                Log.d(MapsActivity.TAG, "Precise location access granted")
+                Log.d(LiveMapActivity.TAG, "Precise location access granted")
             }
             permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                 // Only approximate location access granted.
-                Log.d(MapsActivity.TAG, "Only approximate location access granted!")
+                Log.d(LiveMapActivity.TAG, "Only approximate location access granted!")
             }
             else -> {
                 // No location access granted.
-                Log.d(MapsActivity.TAG, "permission denied!")
+                Log.d(LiveMapActivity.TAG, "permission denied!")
             }
         }
     }
@@ -51,11 +51,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         binding.btnLiveMap.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MapsActivity::class.java))
+            startActivity(Intent(this@MainActivity, LiveMapActivity::class.java))
         }
 
         binding.btnLiveTraffic.setOnClickListener {
             startActivity(Intent(this@MainActivity, LiveTrafficActivity::class.java))
+        }
+
+        binding.btnStreetView.setOnClickListener {
+            startActivity(Intent(this@MainActivity, StreetViewLocationActivity::class.java))
         }
 
         binding.btnLiveCameras.setOnClickListener {

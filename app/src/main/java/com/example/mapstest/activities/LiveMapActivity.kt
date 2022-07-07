@@ -4,8 +4,6 @@ import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.graphics.Color
-import android.location.Address
-import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -19,22 +17,24 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mapstest.LocationTracker
 import com.example.mapstest.R
+import com.example.mapstest.databinding.ActivityLiveMapBinding
+import com.example.mapstest.utils.Permissions
 import com.example.mapstest.utils.Utils
-import com.example.mapstest.databinding.ActivityMapsBinding
+import com.example.mapstest.utils.Utils.getAddress
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.*
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class LiveMapActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         const val TAG = "MapsActivityTAG"
         const val REQUEST_CODE_CHECK_SETTINGS = 111
     }
 
-    private lateinit var binding: ActivityMapsBinding
+    private lateinit var binding: ActivityLiveMapBinding
     private lateinit var mMap: GoogleMap
     private lateinit var latLng: LatLng
+    private lateinit var address: String
 
     @RequiresApi(Build.VERSION_CODES.N)
     val locationPermissionRequest = registerForActivityResult(
@@ -45,14 +45,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 // Precise location access granted.
                 Log.d(TAG, "Precise location access granted")
                 if (!Utils.isGPSEnabled(this)) {
-                    Utils.enableLocationSettings(this)
+                    Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
                 }
             }
             permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                 // Only approximate location access granted.
                 Log.d(TAG, "Only approximate location access granted!")
                 if (!Utils.isGPSEnabled(this)) {
-                    Utils.enableLocationSettings(this)
+                    Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
                 }
             }
             else -> {
@@ -64,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMapsBinding.inflate(layoutInflater)
+        binding = ActivityLiveMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -76,7 +76,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onUpdate(lat: Double, lon: Double) {
                 Log.d(TAG, "onUpdate: lat: $lat ---- lon: $lon")
                 latLng = LatLng(lat, lon)
-                getAddress(latLng)
+                address = getAddress(this@LiveMapActivity, latLng).toString()
             }
         })
     }
@@ -192,7 +192,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
         }
 
-        if (Utils.hasLocationPermission(this))
+        if (Permissions.hasLocationPermission(this))
             mMap.isMyLocationEnabled = true
         else {
             locationPermissionRequest.launch(
@@ -207,7 +207,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         if (!Utils.isGPSEnabled(this)) {
-            Utils.enableLocationSettings(this)
+            Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
         } else addMarker()
     }
 
@@ -225,11 +225,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.animateCamera(loc)
         } else {
             Log.d(TAG, "onCreate: gps disabled")
-            Utils.enableLocationSettings(this)
+            Utils.enableLocationSettings(this, REQUEST_CODE_CHECK_SETTINGS)
         }
     }
 
-    private fun getAddress(latLng: LatLng) {
+    /*private fun getAddress(latLng: LatLng) {
         try {
             val addresses: List<Address>
             val geocoder = Geocoder(this, Locale.getDefault())
@@ -255,7 +255,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (e: Exception) {
             Log.d(TAG, "getAddress: ${e.printStackTrace()}")
         }
-    }
+    }*/
 
     /*fun onMapSearch(view: View?) {
         val location = binding.editText.text.toString()

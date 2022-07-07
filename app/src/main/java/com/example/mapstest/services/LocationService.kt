@@ -12,9 +12,11 @@ import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.mapstest.R
 import com.example.mapstest.activities.LocationTrackerActivity
+import com.example.mapstest.activities.LocationTrackerActivity.Companion.points
 import com.example.mapstest.utils.Constants.LOCATION
 import com.example.mapstest.utils.Constants.LOCATION_TRACKER
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -120,7 +122,7 @@ class LocationService : Service() {
             applicationContext,
             0,
             showTaskIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val builder: Notification.Builder = Notification.Builder(applicationContext)
             .setContentTitle(getString(R.string.app_name))
@@ -193,6 +195,10 @@ class LocationService : Service() {
         mReference?.child(id)?.setValue(location)
         Log.i(TAG, "New location: $location")
         mLocation = location
+
+        points.add(LatLng(location.latitude, location.longitude))
+        Log.d(TAG, "onNewLocation: points= $points")
+        LocationTrackerActivity.updateTrack()
 
         // Notify anyone listening for broadcasts about the new location.
         val intent = Intent(ACTION_BROADCAST)
